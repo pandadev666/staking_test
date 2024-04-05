@@ -40,7 +40,6 @@ describe("Staking", function () {
 
     lastRewardBlock = await ethers.provider.getBlockNumber();
 
-    console.log("=>>>>>>>", lastRewardBlock);
     // Send the Test Token to Staking Contract as rewardable Tokens by owner (1000 tokens)
 
     await testToken.connect(deployer).approve(staking.address, ethers.utils.parseUnits("10000", "gwei"));
@@ -54,7 +53,6 @@ describe("Staking", function () {
     await testToken.connect(david).approve(staking.address, ethers.utils.parseUnits('10', "gwei"));
     await staking.connect(david).stakeToken(ethers.utils.parseUnits('10', 'gwei'));
     lastRewardBlock = await ethers.provider.getBlockNumber();
-    console.log("=>>>>>>>>>", lastRewardBlock);
 
     // Current Reward Token Amount is zero
     expect(await staking.getRewardTokenAmount(david.address)).to.be.equal(ethers.utils.parseUnits("0", "gwei"));
@@ -70,7 +68,6 @@ describe("Staking", function () {
     await testToken.connect(jhon).approve(staking.address, ethers.utils.parseUnits('20', "gwei"));
     await staking.connect(jhon).stakeToken(ethers.utils.parseUnits('20', 'gwei'));
     lastRewardBlock = await ethers.provider.getBlockNumber();
-    console.log("=>>>>>>>>>", lastRewardBlock);
 
     // Current Reward Token Amount is zero
     expect(await staking.getRewardTokenAmount(jhon.address)).to.be.equal(ethers.utils.parseUnits("0", "gwei"));
